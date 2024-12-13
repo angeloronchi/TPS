@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizza Dati</title>
+    <link rel="stylesheet" href="anagrafica.css">
+</head>
+<body>
+
+    <h1>Tabella dei Dati Inseriti</h1>
+
+    <table id="tabellaDati">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Indirizzo</th>
+                <th>Città</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+
+
+    <button onclick="window.location.href='anagrafica.html'">Torna alla pagina di inserimento</button>
+
+    <script>
+        
+       
+        let datiMemorizzati = localStorage.getItem('datiAnagrafici');
+        
+        if (datiMemorizzati) {
+            
+            let matriceDati = JSON.parse(datiMemorizzati);
+
+            let tbody = document.getElementById("tabellaDati").getElementsByTagName("tbody")[0];
+
+            let nuovoContenuto = "";
+
+            matriceDati.forEach((riga) => {
+                let tr = "<tr>";
+
+                riga.forEach((dato) => {
+                    tr += `<td>${dato}</td>`;
+                });
+
+                tr += "</tr>";
+                nuovoContenuto += tr;
+            });
+
+            tbody.innerHTML = nuovoContenuto;
+        } else {
+            alert("Non ci sono dati da visualizzare.");
+        }
+
+
+       
+
+    </script>
+
+
+
+
+</body>
+</html>
